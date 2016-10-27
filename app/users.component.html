@@ -1,0 +1,24 @@
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let user of users" (click)="onSelect(user)" [class.selected]="user === selectedUser">
+    <span class="user-element">
+      <span class="badge">{{user.id}}</span> {{user.name}}
+    </span>
+    <button  type="button" class="btn btn-danger"(click)="deleteUser(user, $event)">Delete</button>
+
+  </li>
+</ul>
+
+
+<div class="error" *ngIf="error">{{error}}</div>
+<button (click)="addUser()">Add New user</button>
+<div *ngIf="addingUser">
+  <my-user-detail (close)="close($event)"></my-user-detail>
+</div>
+
+<div *ngIf="selectedUser">
+  <h2>
+    {{selectedUser.name | uppercase}} is my user
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
